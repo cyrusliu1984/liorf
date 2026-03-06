@@ -88,12 +88,11 @@ sudo make install
 ```bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
-git clone https://github.com/your-repo/liorf.git
-git clone https://github.com/your-repo/qs882velodyne.git
-git clone https://github.com/your-repo/rslidar2velodyne.git
+git clone https://github.com/cyrusliu1984/liorf.git
+
 cd ~/catkin_ws
-catkin_make_isolated --force-cmake
-source devel_isolated/setup.bash
+catkin_make
+source devel/setup.bash
 ```
 
 ## 点云转换节点
@@ -223,7 +222,7 @@ globalMapVisualizationLeafSize: 1.0        # Point cloud density (meters)
 ### 启动方式
 
 ```bash
-roslaunch liorf liorf.launch
+roslaunch liorf run_lio_sam_czlidar.launch
 ```
 
 ## 使用流程
@@ -241,13 +240,8 @@ roslaunch rslidar2velodyne rslidar2velodyne.launch
 2. **启动 LIO-SAM SLAM**:
 
 ```bash
-roslaunch liorf liorf.launch
-```
-
-3. **(可选) 启动 GPS 导航**:
-
-```bash
-roslaunch navsat navsat.launch
+roslaunch liorf run_lio_sam_czliar.launch
+roslaunch liorf run_lio_sam_rslidar.launch
 ```
 
 ## 参数配置指南
@@ -285,38 +279,12 @@ roslaunch navsat navsat.launch
 
 3. **点云转换节点**：确保点云转换节点的输出话题与 LIO-SAM 的 `pointCloudTopic` 参数一致：
    - QS882: `pointCloudTopic: "/czlidar_points"`
-   - RS80: `pointCloudTopic: "/rslidar_points_velodyne"`
+   - RS80: `pointCloudTopic: "/rslidar_points"`
 
 4. **IMU 配置**：确保 IMU 数据正确发布，并与配置的 IMU 类型匹配。
 
 5. **GPS 配置**：如果使用 GPS，需要配置 `navsat` 和 `ekf_gps` 参数，确保 GPS 数据正确转换为坐标。
 
-## 故障排除
-
-### 1. 点云转换节点无法启动
-
-- **检查环境变量**：确保已正确 source 环境
-  ```bash
-  source devel_isolated/setup.bash
-  ```
-  
-- **检查构建**：确保工作空间正确构建
-  ```bash
-  cd ~/catkin_ws
-  catkin_make_isolated
-  ```
-
-### 2. LIO-SAM 无法启动
-
-- **检查点云转换节点**：确保点云转换节点已启动
-- **检查话题匹配**：确保 `pointCloudTopic` 与点云转换节点的输出话题一致
-- **检查参数**：确保 `N_SCAN` 参数与激光雷达型号匹配
-
-### 3. 地图质量不佳
-
-- **调整范围**：修改 `lidarMinRange` 和 `lidarMaxRange` 过滤无效点
-- **优化参数**：调整 `mappingSurfLeafSize` 优化地图精度
-- **检查 IMU**：确保 IMU 数据准确且频率匹配
 
 ## 项目结构
 
