@@ -19,7 +19,7 @@
 | 型号 | 环数 (N_SCAN) | 水平分辨率 (Horizon_SCAN) | 点云转换节点 |
 |------|---------------|---------------------------|--------------|
 | QS882 | 88 | 1200 | `qs882velodyne_node` |
-| RSLIDAR RS80 | 80 | 1200 | `rslidar2velodyne_node` |
+| RSLIDAR RS80 | 80 | 1800 | `rslidar2velodyne_node` |
 
 ## 依赖环境
 
