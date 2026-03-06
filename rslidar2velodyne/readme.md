@@ -4,7 +4,7 @@
 
 ## 概述
 
-`rslidar2velodyne_node` 是一个 ROS 节点，用于将 RSLIDAR（RS80 激光雷达）的点云数据转换为 Velodyne 标准格式。该节点通过计算点的垂直角度，将点分配到对应的 ring（环），并生成合适的时间戳，使 RSLIDAR 数据能够与 Velodyne 传感器数据兼容。
+`rslidar2velodyne_node` 是一个 ROS 节点，用于将 RSLIDAR（RS80 激光雷达）的点云数据转换为 Velodyne 标准格式。该节点通过计算点的垂直角度，将点分配到对应的 ring（环），并生成合适的时间戳，使 RSLIDAR 数据能够与 Velodyne 传感器数据兼容。注意：目前此功能并不完善，此代码仅做构思实现！
 
 ## 核心功能
 
@@ -26,14 +26,14 @@
 1. 将此节点代码放入 ROS 工作空间的 `src` 目录：
    ```bash
    cd ~/catkin_ws/src
-   git clone https://github.com/your-repo/rslidar2velodyne.git
+   git clone https://github.com/cyrusliu1984/liorf/rslidar2velodyne.git
    ```
 
 2. 构建工作空间：
    ```bash
    cd ~/catkin_ws
-   catkin_make_isolated
-   source devel_isolated/setup.bash
+   catkin_make
+   source devel/setup.bash
    ```
 
 ## 使用
@@ -133,7 +133,3 @@ roslaunch rslidar2velodyne rslidar2velodyne.launch input_topic:=/raw_points outp
 
 ---
 
-> **注意**：此节点已通过 `catkin_make_isolated` 构建，使用时请确保正确 source 环境：
-> ```bash
-> source devel_isolated/setup.bash
-> ```
