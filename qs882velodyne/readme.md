@@ -25,14 +25,14 @@
 1. 将此节点代码放入 ROS 工作空间的 `src` 目录：
    ```bash
    cd ~/catkin_ws/src
-   git clone https://github.com/your-repo/qs882velodyne.git
+   git clone https://github.com/cyrusliu1984/liorf/qs882velodyne.git
    ```
 
 2. 构建工作空间：
    ```bash
    cd ~/catkin_ws
-   catkin_make_isolated
-   source devel_isolated/setup.bash
+   catkin_make
+   source devel/setup.bash
    ```
 
 ## 使用
@@ -111,13 +111,5 @@
 roslaunch qs882velodyne qs882velodyne.launch input_topic:=/raw_points output_topic:=/velodyne_points num_rings:=88 debug_print:=true
 ```
 
-## 贡献
 
-欢迎提交 PR 以改进代码、文档或添加新功能。请确保遵循 ROS 编码规范。
 
----
-
-> **注意**：此节点已通过 `catkin_make_isolated` 构建，使用时请确保正确 source 环境：
-> ```bash
-> source devel_isolated/setup.bash
-> ```
