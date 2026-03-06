@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>qs882velodyne</name>
+  <version>0.0.0</version>
+  <description>ROS1 Noetic: Convert PointCloud2 without ring/time to QS882 Velodyne XYZIRT format</description>
+  <maintainer email="cyrusliu1984@163.com">cyrusliu1984</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- ROS1 依赖 -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+
+  <!-- 导出配置 -->
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+</package>
+

@@ -1,0 +1,27 @@
+
+<launch>
+
+  <!-- 1. 静态坐标变换节点：base_link → czlidar -->
+  <!-- 参数顺序：x y z roll pitch yaw 父坐标系 子坐标系 发布频率(Hz) -->
+  <node name="rslidar_static_tf" 
+        pkg="tf" 
+        type="static_transform_publisher" 
+        args="0.0 0.0 0.0 0.0 0.0 0.0 base_link czlidar 10" 
+        output="screen"/>
+        
+        
+  <!-- QS882 Velodyne点云转换节点 -->
+  <node 
+    name="qs882velodyne_node" 
+    pkg="qs882velodyne" 
+    type="qs882velodyne_node" 
+    output="screen">
+    
+    <param name="input_topic" value="/point_raw"/>
+    <param name="output_topic" value="/czlidar_points"/>
+    <param name="num_rings" value="88"/>
+    <param name="debug_print" value="false"/>
+    <param name="debug_print_count" value="20"/>
+  </node>
+</launch>
+

@@ -1,0 +1,23 @@
+<launch>
+  <!-- 1. 静态坐标变换节点：base_link → rslidar -->
+  <!-- 参数顺序：x y z roll pitch yaw 父坐标系 子坐标系 发布频率(Hz) -->
+  <node name="rslidar_static_tf" 
+        pkg="tf" 
+        type="static_transform_publisher" 
+        args="0.0 0.0 0.0 0.0 0.0 0.0 base_link rslidar 10" 
+        output="screen"/>
+
+  <!-- 2. 声明参数（可通过命令行覆盖） -->
+  <node name="rslidar2velodyne_node" 
+        pkg="rslidar2velodyne" 
+        type="rslidar2velodyne_node" 
+        output="screen">
+    <param name="input_topic" value="/rslidar_points"/>
+    <param name="output_topic" value="/rslidar_points_processed"/>
+    <param name="num_rings" value="80"/>
+    <param name="debug_print" value="false"/>          <!-- 开启调试打印 -->
+    <param name="debug_print_count" value="90"/>      <!-- 每帧打印前20个点 -->
+  </node>
+
+</launch>
+
